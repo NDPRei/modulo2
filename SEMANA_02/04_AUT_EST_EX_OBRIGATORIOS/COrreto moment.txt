@@ -1,0 +1,47 @@
+CREATE TABLE Formacao 
+( 
+ Curso VARCHAR(255),  
+ Data_ini INT,  
+ Descricao VARCHAR(255),  
+ idPerfil INT,  
+ Data_fim INT
+); 
+
+CREATE TABLE Experiencia 
+( 
+ Nome_da_empresa VARCHAR(255) PRIMARY KEY,  
+ Data_ini INT,  
+ Cargo VARCHAR(255),  
+ idPerfil INT,  
+ Data_fim INT  
+); 
+
+CREATE TABLE Realizacoes 
+( 
+ Descricao VARCHAR(255),  
+ Data INT,  
+ idPerfil INT
+); 
+
+CREATE TABLE Habilidades 
+( 
+ Habilidades INT,  
+ idPerfil INT
+); 
+
+CREATE TABLE Personalidade 
+( 
+ Descricao VARCHAR(255),
+ idPerfil INT
+); 
+
+CREATE TABLE Perfil 
+( 
+ Foto VARCHAR(255),  
+ Nome VARCHAR(255),  
+ Cargo INT,  
+ Endereco VARCHAR(255),  
+ Email VARCHAR(255),  
+ Contato INT,  
+ ID INTEGER PRIMARY KEY AUTOINCREMENT 
+); 
