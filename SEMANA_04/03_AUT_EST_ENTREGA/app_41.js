@@ -18,11 +18,11 @@
    app.use(express.json());
 
    // Retorna todos registros (é o R do CRUD - Read)
-   app.get("Formacao", (req, res) => {
+   app.get("/Formacao", (req, res) => {
        res.statusCode = 200;
        res.setHeader('Access-Control-Allow-Origin', '*');
        var db = new sqlite3.Database(DBPATH); // Abre o banco
-       var sql = "SELECT * FROM Formacao ORDER BY Data_fim ";
+       var sql = "SELECT * FROM Formacao ORDER BY Data_fim COLLATE NOCASE";
            db.all(sql, [],  (err, rows ) => {
                if (err) {
                    throw err;
@@ -51,9 +51,10 @@
 
    // Monta o formulário para o update (é o U do CRUD - Update)
    app.get('/atualizaFormacao', (req, res) => {
-       res.statusCode = 200;
+       res.statusCode = 200; 
+       const{idPerfil}=req.body
        res.setHeader('Access-Control-Allow-Origin', '*'); 
-       sql = "SELECT * FROM Formacao WHERE idPerfil="+ req.query.idPerfil;
+        sql = `SELECT * FROM Formacao WHERE idPerfil='${idPerfil}'`;
        console.log(sql);
        var db = new sqlite3.Database(DBPATH); // Abre o banco
        db.all(sql, [],  (err, rows ) => {
@@ -69,7 +70,7 @@
    app.get('/removeFormacao', urlencodedParser, (req, res) => {
        res.statusCode = 200;
        res.setHeader('Access-Control-Allow-Origin', '*'); 
-       sql = "DELETE FROM Formacao WHERE idPErfil='" + req.query.idPerfil + "'";
+       sql = "DELETE FROM Formacao WHERE idPerfil='" + req.query.idPerfil + "'";
        console.log(sql);
        var db = new sqlite3.Database(DBPATH); // Abre o banco
        db.run(sql, [],  err => {
